@@ -1,0 +1,32 @@
+<h1>Burgers!</h1>
+
+<h2>Burgers that you ordered:</h2>
+<ul>
+    {{#each burgers}}
+      {{#unless this.devoured}}
+        <div class="col-md-9 text-center">
+					<pre>{{this.id}}. {{this.burger_name}}</pre>
+				</div>
+        <form class="devour-btn">
+          <input input type="hidden" class="burger_id" type="text" value={{this.id}}>
+          <button type="submit" class="btn btn-default">DEVOUR</button>
+        </form>
+      {{/unless}}
+    {{/each}}
+</ul>
+<h2>Devoured burgers:</h2>
+<ul>
+  {{#each burgers}}
+    {{#if this.devoured}}
+      <input class="form-control" type="text" placeholder="{{this.id}} . {{this.burger_name}}" readonly>
+    {{/if}}
+  {{/each}}
+</ul>
+
+<h2>Add a Burger!</h2>
+<form class="create-form" action="/burgers/create" method="POST">
+  <label for="ca">Burger Name:</label>
+    <input type="text" id="enter_text" name="burger_name">
+    <button type="submit">Add Burger</button>
+</form>
+
